@@ -350,8 +350,5 @@ Ask the room — don't answer for them:
 | Forecast | `Project [metric] for [periods] using a simple trend. State assumptions and limits.` |
 | Check yourself | `What in your answer am I most likely to need to double-check?` |
 
-### Same prompts, other tools
-These prompts also work in **ChatGPT** and **Claude** (upload the workbook). The difference: Copilot in Excel can *change* your sheet in place; ChatGPT and Claude typically analyze the file and hand you back results or a new file. Same skills, different hands.
-
 ---
 
