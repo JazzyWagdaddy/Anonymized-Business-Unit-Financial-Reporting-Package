@@ -40,9 +40,9 @@
 
 ## Before you start (setup checklist)
 
-- [ ] Download the workbook from the [`data`](data/) folder.
+- [ ] Download the workbook you received in email.
 - [ ] Upload it to **OneDrive or SharePoint** and open it in Excel. Copilot in Excel needs the file saved in the cloud with **AutoSave on**.
-- [ ] Click the **Copilot** button on the Home ribbon. If you don't see it, use **Microsoft 365 Copilot Chat** and attach the file instead — every prompt in this lab works there too.
+- [ ] Click the **Copilot** button on the Home ribbon *or* in the lower right corner, depending on your configuration. If you don't see it, use **Microsoft 365 Copilot Chat** and attach the file instead — every prompt in this lab works there too.
 - [ ] **Work on a copy.** Name it `BU Lab - <your initials>.xlsx`.
 - [ ] If Copilot says it can't find your data, select the report range (**A4:X95**) before prompting, or mention the range in your prompt. Copilot works best on clean, table-shaped data, and this report has title and section-header rows.
 
