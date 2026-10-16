@@ -1,7 +1,5 @@
 # Turn Finance Data into a Clear Story with Copilot
 
-**A 60-minute, beginner-friendly hands-on lab for finance professionals**
-
 ## Lab purpose
 
 Finance professionals are often handed a table, report, or export and asked to explain what happened, why it matters, and what should happen next. Copilot can accelerate that work, but only when the user gives it a clear business question, enough context, a defined output, and explicit review rules.
@@ -41,7 +39,7 @@ By the end of the lab, you will be able to:
 
 ## What you need
 
-- A finance dataset open in a Copilot-enabled analysis experience.
+- A finance dataset open in a Copilot-enabled analysis experience. (the Anonymized Business Unit — Financial Reporting Package (Sample Data) file.
 - At least one descriptive field, such as **Account**, **Category**, **Business Unit**, **Department**, **Vendor**, **Jurisdiction**, or **Tax Type**.
 - A time field, such as **Month**, **Period**, or **Date**.
 - At least one numeric field. **Actual** and **Forecast** are helpful but not required.
@@ -70,18 +68,6 @@ Use the same six-stage workflow whenever you ask Copilot to help with finance da
 4. **Analyze** — Perform one focused comparison, trend, exception, or forecast task.
 5. **Challenge** — Ask what may be wrong, unsupported, incomplete, or confidential.
 6. **Communicate** — Put the verified result, limitation, and next action first.
-
-## 60-minute agenda
-
-| Time | Activity | Participant outcome |
-| --- | --- | --- |
-| **0–5 minutes** | Orient to the workflow and choose a question | A clear decision or audience need |
-| **5–13 minutes** | Build a strong finance prompt | A complete four-part prompt |
-| **13–23 minutes** | Map and inspect the dataset | A data map and list of open definitions |
-| **23–33 minutes** | Scan quality and select an analysis question | A focused, answerable question |
-| **33–45 minutes** | Complete an analysis and presentation path | A draft table, visual recommendation, and narrative |
-| **45–54 minutes** | Challenge, correct, and validate | A revised result with documented limitations |
-| **54–60 minutes** | Report out and save a reusable prompt | A 60-second explanation and reusable template |
 
 ---
 
@@ -123,10 +109,6 @@ Your question is ready when it names:
 - **One expected action**, such as review, investigate, explain, prioritize, or decide.
 
 If the question contains several unrelated goals, choose the one that would be most useful in the next meeting or review.
-
-## Facilitator cue
-
-Ask two participants to share their questions. Point out the difference between a topic such as “expenses” and a decision-focused question such as “Which expense categories account for the largest unfavorable Forecast variance this quarter?”
 
 ---
 
@@ -765,72 +747,6 @@ Ask Copilot to convert the human review checklist into a reusable review templat
 
 ---
 
-# Facilitator guide
 
-## Before the session
-
-- Confirm participants can access the practice dataset and Copilot experience.
-- Decide whether everyone will use one dataset or role-specific datasets.
-- Provide approved variance thresholds, business definitions, or comparison rules if available.
-- Identify fields that participants should not share or display.
-- Test the core prompts using the selected dataset.
-- Prepare a fallback screenshot or small approved table in case access is interrupted.
-- Remind participants that the goal is to practice a workflow, not to produce an authoritative business conclusion during the class.
-
-## Suggested facilitation rhythm
-
-### 0–5 minutes — Frame the problem
-
-Demonstrate the difference between a topic and a decision-focused question. Ask participants to name the audience and action before opening Copilot.
-
-### 5–13 minutes — Build the prompt
-
-Show the weak prompt first. Add goal, context, output, and guardrails one at a time so participants can see how each instruction reduces ambiguity.
-
-### 13–23 minutes — Understand the data
-
-Pause after the grain prompt. Compare two responses and ask what evidence supports the proposed row definition.
-
-### 23–33 minutes — Inspect and choose
-
-Emphasize that Copilot should identify issues without silently changing the data. Help participants choose one question that is answerable, useful, and verifiable.
-
-### 33–45 minutes — Analyze and present
-
-Have participants select one analysis path. Encourage follow-up prompts rather than restarting. Limit the presentation recommendation to one visual and one supporting table.
-
-### 45–54 minutes — Challenge and validate
-
-Ask participants to find at least one weakness in their first answer. Require one independent calculation or trace-back before the result is described as checked.
-
-### 54–60 minutes — Share and transfer
-
-Invite two or three 60-second report-outs. Close by asking each participant where the reusable prompt could fit into a real recurring process.
-
-## Instructor observation checklist
-
-Watch for whether participants:
-
-- State an audience and decision before requesting analysis;
-- Confirm the dataset grain;
-- Notice unresolved field definitions;
-- Use actual column names;
-- Request formulas or comparison logic;
-- Challenge unsupported explanations;
-- Independently verify an important result;
-- Protect confidential information;
-- End with a specific human review step.
-
-## Debrief questions
-
-1. What changed when you provided a clear audience and output format?
-2. Where did Copilot make an assumption?
-3. Which follow-up prompt most improved the answer?
-4. What was the difference between an observation and a possible cause?
-5. Which calculation or business definition required human judgment?
-6. What would prevent this workflow from being repeatable next month?
-7. Where could this workflow save time without reducing review quality?
-
-## Closing principle
 
 > **The objective is not to ask AI for “insights.” The objective is to give it a clear business question, usable context, an explicit output, and review rules that make the result understandable, traceable, and testable.**
