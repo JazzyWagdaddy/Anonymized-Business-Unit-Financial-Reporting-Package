@@ -1,752 +1,428 @@
-# Turn Finance Data into a Clear Story with Copilot
+# Lab: From Spreadsheet to Story with Microsoft Copilot
+### A 60-minute hands-on lab for Finance teams (Tax · Accounting · ERP Systems · FP&A · AP/Treasury · Payroll)
 
-## Lab purpose
+> **The hook (say this out loud):**
+> "Every month you build a report that's 95 rows tall and 24 columns wide… and your CFO reads three numbers. Today, Copilot is your new analyst — fast, eager, a little overconfident. Your job isn't to do the work. It's to *manage* the work."
 
-Finance professionals are often handed a table, report, or export and asked to explain what happened, why it matters, and what should happen next. Copilot can accelerate that work, but only when the user gives it a clear business question, enough context, a defined output, and explicit review rules.
-
-In this lab, you will use Copilot as an **analysis partner**, not as an unquestioned answer engine. You will practice a repeatable workflow for understanding a finance dataset, asking a focused question, improving the presentation, drafting a concise narrative, challenging the response, and documenting what still requires human review.
-
-The exercises are designed for a new Copilot user. Every activity includes a prompt to try, an explanation of why it works, an expected output, and a checkpoint before moving forward.
-
-> **Professional judgment remains essential.** Verify calculations, classifications, assumptions, source data, confidentiality, and conclusions before using AI-assisted work in financial reporting, tax, payroll, treasury, forecasting, operational decisions, or management communications.
+---
 
 ## Lab at a glance
 
-| Item | Description |
-| --- | --- |
-| **Time** | 60 minutes |
-| **Experience level** | New to Copilot |
-| **Audience** | Tax, Accounting, ERP Systems, FP&A, Accounts Payable, Treasury, and Payroll |
-| **Working format** | Individual work with brief pair or group discussion |
-| **Primary deliverable** | One decision-ready finance analysis with a supporting table or visual recommendation |
-| **Validation deliverable** | A documented list of checks, limitations, assumptions, and next actions |
-| **Reusable takeaway** | A finance prompt that can be adapted to a recurring task |
+| | |
+|---|---|
+| **Duration** | 60 minutes |
+| **Level** | New to Copilot. Comfortable in Excel. |
+| **Tools** | Microsoft 365 Copilot in Excel (primary) · Microsoft 365 Copilot Chat (backup) |
+| **Data** | [`data/Anonymized BU Sample Data - Original.xlsx`](data/) — one business unit's monthly reporting package |
+| **Framework** | AI Fluency 4Ds: **Delegation · Description · Discernment · Diligence** |
 
-## Learning objectives
+### What you'll walk away able to do
 
-By the end of the lab, you will be able to:
+1. **Pretty it up** — turn a dense report into something an exec can scan in 10 seconds.
+2. **Summarize it** — get a concise, accurate narrative tailored to *your* audience.
+3. **Explain the variance** — Actuals vs. Forecast and year-over-year, with the "why."
+4. **Visualize & project** — build a chart and a simple forecast, then sanity-check it.
+5. **Catch Copilot when it's wrong** — because it will be, and finance is where that hurts.
 
-1. Explain the four building blocks of a strong finance prompt: **goal, context, output, and guardrails**.
-2. Ask Copilot to describe a dataset's purpose, fields, period, and level of detail.
-3. Identify data-quality issues that could make an analysis incomplete or misleading.
-4. Turn a broad request into one focused business question.
-5. Select a table or visual based on the audience's decision need.
-6. Create a concise management summary, Actual-versus-Forecast analysis, or transparent baseline forecast approach.
-7. Improve a weak response through follow-up prompts instead of starting over.
-8. Separate confirmed observations, assumptions, possible causes, and recommendations.
-9. Review AI-assisted work for calculation, classification, confidentiality, and interpretation risks.
-10. Save a reusable prompt and explain where human judgment is still required.
+### Agenda
 
-## What you need
-
-- A finance dataset open in a Copilot-enabled analysis experience. (the Anonymized Business Unit — Financial Reporting Package (Sample Data) file.
-- At least one descriptive field, such as **Account**, **Category**, **Business Unit**, **Department**, **Vendor**, **Jurisdiction**, or **Tax Type**.
-- A time field, such as **Month**, **Period**, or **Date**.
-- At least one numeric field. **Actual** and **Forecast** are helpful but not required.
-- A place to copy prompts and record your final result.
-- An approved environment appropriate for the sensitivity of the data.
-
-If your assigned dataset is unavailable, use an approved practice dataset with a category, a period, and at least one numeric measure. If your column names differ from the examples, substitute the actual names from your dataset.
-
-## Suggested practice data shape
-
-| Period | Business Unit | Account or Category | Actual | Forecast |
-| --- | --- | --- | ---: | ---: |
-| Jan | North | Revenue | 125,000 | 120,000 |
-| Jan | North | Payroll Expense | 42,000 | 40,000 |
-| Jan | South | Revenue | 98,000 | 105,000 |
-
-This small table illustrates a usable structure only. Do not replace values in an assigned dataset with these sample values.
-
-## The beginner workflow
-
-Use the same six-stage workflow whenever you ask Copilot to help with finance data:
-
-1. **Frame** — State the business goal, audience, requested output, and review rules.
-2. **Understand** — Confirm what the data represents and what one row means.
-3. **Inspect** — Identify data-quality issues and missing definitions.
-4. **Analyze** — Perform one focused comparison, trend, exception, or forecast task.
-5. **Challenge** — Ask what may be wrong, unsupported, incomplete, or confidential.
-6. **Communicate** — Put the verified result, limitation, and next action first.
+| Time | Segment | 4D focus |
+|---|---|---|
+| 0:00–0:05 | Kickoff & setup | Delegation |
+| 0:05–0:12 | **Exercise 1** — Meet your data (and its traps) | Discernment |
+| 0:12–0:22 | **Exercise 2** — Make it look nicer | Description |
+| 0:22–0:32 | **Exercise 3** — Summarize it in 30 seconds | Description |
+| 0:32–0:44 | **Exercise 4** — Variance analysis | Discernment |
+| 0:44–0:52 | **Exercise 5** — Chart it & forecast it | Delegation + Discernment |
+| 0:52–0:57 | **Exercise 6** — Your role track (pick one) | All 4 |
+| 0:57–1:00 | Debrief | Diligence |
 
 ---
 
-# Part 1 — Orient and choose a useful question (0–5 minutes)
+## Before you start (setup checklist)
 
-## Why this step matters
+- [ ] Download the workbook from the [`data`](data/) folder.
+- [ ] Upload it to **OneDrive or SharePoint** and open it in Excel. Copilot in Excel needs the file saved in the cloud with **AutoSave on**.
+- [ ] Click the **Copilot** button on the Home ribbon. If you don't see it, use **Microsoft 365 Copilot Chat** and attach the file instead — every prompt in this lab works there too.
+- [ ] **Work on a copy.** Name it `BU Lab - <your initials>.xlsx`.
+- [ ] If Copilot says it can't find your data, select the report range (**A4:X95**) before prompting, or mention the range in your prompt. Copilot works best on clean, table-shaped data, and this report has title and section-header rows.
 
-A table is not a business question. Before asking Copilot to analyze anything, identify who needs the answer and what decision, review, or conversation the answer should support.
+> 🔒 **Diligence check:** This dataset is anonymized and randomized (±3%) for training. Before you try any of this on real data, confirm what your company allows in Copilot. Rule of thumb: use your *work* Copilot (signed in with your company account), never a personal AI account, for company financials.
 
-## Activity 1A — Identify the audience and decision
+### About the data (read this — it matters later)
 
-Complete these statements:
-
-```text
-The primary audience is: ______________________________________
-
-They need to decide, review, explain, or monitor: ______________
-
-The time period or comparison that matters is: _________________
-
-A useful answer would help them: _______________________________
-```
-
-Examples of focused needs include:
-
-- Explain the largest Actual-versus-Forecast differences to a finance leader.
-- Identify transactions or balances that require reconciliation.
-- Find vendor, category, or business-unit exceptions that need review.
-- Assess whether historical data supports a simple baseline forecast.
-- Improve a dense report so the main message is easier to understand.
-
-## Beginner checkpoint
-
-Your question is ready when it names:
-
-- **One audience**;
-- **One primary business need**;
-- **One time period or comparison basis**; and
-- **One expected action**, such as review, investigate, explain, prioritize, or decide.
-
-If the question contains several unrelated goals, choose the one that would be most useful in the next meeting or review.
+- **One business unit**, 95 rows: Income Statement → Ratios/KPIs → Balance Sheet stats → Headcount.
+- **Columns:** May–Aug 2026 Actuals · Sep 2026–Jan 2027 Forecast · Quarterly Actuals/Forecast · FY 2025 Actual · YTD Aug 2025 vs. YTD Aug 2026 · FY 2026 Outlook · FY 2027 Forecast.
+- **Units:** The cells hold whole dollars but are *formatted to display in thousands*. Keep that in mind. 😉
+- Totals and subtotals are live formulas.
 
 ---
 
-# Part 2 — Build a strong finance prompt (5–13 minutes)
+## How to talk to Copilot: the 4-part prompt
 
-## The four-part prompt pattern
+New learners: you don't need to be a "prompt engineer." Just give it four things — like briefing a new hire.
 
-New users often begin with a short instruction such as “Analyze this data.” The response may sound reasonable, but Copilot does not automatically know the business purpose, audience, output format, or review rules.
+| Part | Ask yourself | Example |
+|---|---|---|
+| **Role** | Who should it act like? | "Act as an FP&A analyst…" |
+| **Task** | What exactly do I want? | "…summarize performance for Aug 2026 YTD…" |
+| **Context** | What does it need to know? | "…values are in dollars, displayed in thousands…" |
+| **Format** | What should it look like? | "…as 3 bullets, under 60 words, for a CFO." |
 
-| Prompt element | Question it answers | Finance example |
-| --- | --- | --- |
-| **Goal** | What are you trying to accomplish? | Identify the largest Actual-versus-Forecast differences |
-| **Context** | What should Copilot understand? | Each row represents one account, business unit, and month |
-| **Output** | What should the answer look like? | Return a ranked table and a five-bullet summary |
-| **Guardrails** | What should Copilot verify or avoid? | Show formulas, use exact figures, and do not invent causes |
-
-## Activity 2A — Compare weak and strong prompts
-
-**Weak prompt**
-
-```text
-Analyze this data and tell me what is important.
-```
-
-**Stronger prompt**
-
-```text
-Goal: Identify the most decision-relevant results in this finance dataset.
-
-Context: Treat each row according to the dataset's actual level of detail. Use the existing field names and values. The audience is a finance manager reviewing the period.
-
-Output: Provide a five-bullet executive summary and a ranked table of the five largest movements.
-
-Guardrails: Use exact figures, show how rankings were determined, separate confirmed observations from possible explanations, and state any data limitations.
-```
-
-### Discuss for one minute
-
-What information did the stronger prompt add? Which addition is most likely to improve the response?
-
-## Activity 2B — Write your first complete prompt
-
-```text
-Goal: I need to ________________________________________________.
-
-Context:
-- Audience: ____________________________________________________
-- The data represents: _________________________________________
-- One row appears to represent: ________________________________
-- Period or comparison basis: __________________________________
-
-Output:
-- Return the result as: ________________________________________
-- Limit or organize the response by: ___________________________
-
-Guardrails:
-- Verify: ______________________________________________________
-- Flag: ________________________________________________________
-- Do not: ______________________________________________________
-```
-
-## Activity 2C — Improve one ambiguous phrase
-
-Look for words such as **important**, **significant**, **unusual**, **best**, **large**, or **bad**. Replace at least one with a measurable instruction.
-
-| Ambiguous phrase | More testable instruction |
-| --- | --- |
-| Find large variances | Rank by absolute variance amount and show variance percentage |
-| Show unusual items | Identify values outside the normal range and explain the rule used |
-| Create a good chart | Recommend one chart that answers the selected business question |
-| Summarize the data | State the period, comparison basis, top result, limitation, and next action |
-
-## Expected output
-
-A complete prompt that another person could understand without hearing your verbal explanation.
-
-## Beginner checkpoint
-
-Before submitting the prompt, confirm that it:
-
-- [ ] Asks one primary business question.
-- [ ] Identifies the intended audience.
-- [ ] States the period or comparison basis.
-- [ ] Defines the requested format and level of detail.
-- [ ] Includes at least one calculation, review, or “do not” instruction.
-- [ ] Does not ask Copilot to invent explanations that are absent from the data.
+That's **Description** — the second D. Vague in, vague out.
 
 ---
 
-# Part 3 — Understand and inspect the dataset (13–23 minutes)
+## Exercise 1 — Meet your data (and its traps)
+**⏱ 7 minutes · 4D: Discernment**
 
-## Why this step matters
+> **Story:** You wouldn't let a new analyst present on day one without asking "what is this file, anyway?" Same with Copilot.
 
-An analysis can be mathematically correct and still be misleading if the user misunderstands what one row represents, mixes monthly and cumulative values, overlooks missing periods, or treats a label as a confirmed business definition.
+**Step 1.** Paste this into Copilot:
 
-## Activity 3A — Create a data map
-
-Submit this prompt:
-
-```text
-Review this dataset and explain it to a new finance user.
-
-Create a data map that identifies:
-1. The apparent purpose of the dataset
-2. What one row appears to represent
-3. Each important descriptive field and numeric measure
-4. The time period and level of detail
-5. Which fields can support trends, comparisons, exceptions, or variance analysis
-6. Any field whose meaning cannot be confirmed from the data alone
-
-Use the actual column names. Separate confirmed observations from assumptions. Do not change the data.
+```
+Describe this worksheet in plain English. What sections does it contain,
+what time periods do the columns cover, and what units are the numbers in?
+Then list anything that looks unusual, inconsistent, or worth questioning
+before I use this data in a report.
 ```
 
-## Activity 3B — Test the dataset grain
+**Step 2.** Compare Copilot's answer to the "About the data" section above.
 
-“Grain” means the level of detail represented by one row. Examples include one row per invoice, account-period, employee-pay-period, entity-month, or vendor-category combination.
+### 🤔 Discuss (don't peek at the answers yet)
 
-Use this follow-up:
+1. Did Copilot say the numbers are in **dollars** or **thousands**? If it reads a cell showing `1,405`, is that $1,405 or $1.4 million?
+2. Look at **column V** ("Variance Aug 2026 YTD vs Aug 2025 YTD") in the **Ratios** section. Does a G&A ratio *variance* of 1.4% or an EBITA-margin variance of 116% make sense? Why might a formula that works for dollars break for ratios?
+3. Sep 2026 is labeled **Forecast** in the monthly columns, but **Q3 2026** is labeled **Actual**. Q3 includes September. What does that tell you?
+4. Is there any month that has **both** an Actual and a Forecast? (Hint: what does that mean for "Actual vs. Forecast"?)
 
-```text
-Recheck the level of detail.
-
-Identify the combination of fields that appears to make a row unique. Show any duplicate-looking combinations. If uniqueness cannot be confirmed, explain what definition or identifier is missing.
-```
-
-## Review the response
-
-Ask yourself:
-
-- Did Copilot correctly identify what one row represents?
-- Did it distinguish descriptive dimensions from numeric measures?
-- Did it accurately describe the period covered?
-- Did it confuse a transaction amount, period balance, and cumulative balance?
-- Did it make an assumption about an unfamiliar field?
-- Could two rows represent the same transaction, balance, or category-period?
-
-## Activity 3C — Create a field-definition log
-
-Record unresolved fields before analysis:
-
-| Field or term | What Copilot inferred | What must be confirmed | Owner or evidence needed |
-| --- | --- | --- | --- |
-| Example: Forecast | Approved plan | Whether this is plan or current outlook | FP&A owner or report definition |
-|  |  |  |  |
-|  |  |  |  |
-
-## Expected output
-
-- A short description of the dataset;
-- A proposed definition of one row;
-- A list of measures and dimensions;
-- A list of definitions that still require confirmation.
-
-## Beginner checkpoint
-
-Do not continue until you can explain, in one sentence, what one row represents. If you cannot, carry that uncertainty into the final limitations section.
+> **The aha:** Copilot reads the data *exactly as given*. If the file has quirks, Copilot will confidently repeat them. Your expertise is the filter.
 
 ---
 
-# Part 4 — Scan quality and select an analysis question (23–33 minutes)
+## Exercise 2 — Make it look nicer
+**⏱ 10 minutes · 4D: Description**
 
-## Activity 4A — Run a data-quality scan
+> **Story:** Your report is a buffet with no labels. Everything's there, but nobody knows where the dessert is. Let's add signs.
 
-```text
-Inspect the dataset for issues that could affect analysis.
+Pick **two or three** of these. Run them one at a time and watch what changes.
 
-Check for:
-- Blank or missing values
-- Duplicate-looking records
-- Inconsistent category, account, vendor, or business-unit labels
-- Unexpected signs or number formats
-- Missing or partial periods
-- Zero, blank, or negative comparison values
-- Unusually large or small values
-- Totals mixed with detail rows
-- Values that may contain confidential or employee-level information
-
-Return a table with:
-1. Issue
-2. Affected field or record
-3. Why it matters
-4. Recommended review step
-5. Whether analysis can continue before the issue is resolved
-
-Do not silently correct, remove, or replace any data.
+**2a. Highlight the problems**
+```
+Apply conditional formatting to the Net Income row (row 45) so negative
+values show in red and values above $200,000 show in green.
 ```
 
-## Activity 4B — Classify the issues
-
-Place each issue into one of three categories:
-
-| Classification | Meaning | Example response |
-| --- | --- | --- |
-| **Stop** | The issue may invalidate the requested analysis | Confirm whether values are monthly or cumulative before totaling them |
-| **Proceed with caution** | Analysis can continue if the limitation is disclosed | One business unit is missing the latest period |
-| **Document only** | The issue does not change the current calculation but should be noted | Two category labels use different capitalization |
-
-## Activity 4C — Generate answerable business questions
-
-```text
-Based only on fields available in this dataset, propose five finance questions that the data can answer.
-
-For each question, identify:
-- The relevant fields
-- The calculation or comparison required
-- The best output format
-- One definition or limitation that should be confirmed
-- The likely audience or decision supported
-
-Do not propose a question that requires data not present in the dataset.
+**2b. Bold the totals**
+```
+Make all subtotal and total rows bold with a light gray fill:
+Gross Revenue, Cost of Sales, Net Revenue, EBITABA, EBITA,
+Non-Operating Expenses Total, and Net Income.
 ```
 
-## Select one question
+**2c. Separate Actuals from Forecast**
+```
+Visually separate the Actual columns from the Forecast columns.
+Use a light blue header fill for Actual columns and a light orange
+header fill for Forecast columns.
+```
 
-Score each proposed question from 1 to 3:
+**2d. Make ratios readable**
+```
+Format the ratio rows that are percentages (for example, EBITA as a % of
+Net Revenue and G&A Ratio) as percentages with one decimal place.
+```
 
-| Criterion | 1 | 2 | 3 |
-| --- | --- | --- | --- |
-| **Answerable** | Key data is missing | Some assumptions are needed | Available fields directly support it |
-| **Useful** | Interesting but not actionable | Supports discussion | Supports a clear review or decision |
-| **Verifiable** | Logic is difficult to reproduce | Some calculations can be checked | Calculations and source rows can be traced |
+> 💡 **Tip:** If Copilot can't act on the sheet, ask it to "explain the steps to do this in Excel" instead. Not every request can be applied automatically — that's normal, not failure.
 
-Choose the question with the strongest combined score. Do not use the score as a substitute for professional judgment.
-
-## Expected output
-
-One focused question that the available data can answer, plus a short list of data issues and definitions that must accompany the result.
+### 🤔 Discuss
+- Which prompt worked on the first try? Which needed a second attempt? **What did you add the second time?** (That's Description getting sharper.)
+- Is "prettier" the same as "clearer"? What would *your* manager want highlighted?
 
 ---
 
-# Part 5 — Analyze and improve the presentation (33–45 minutes)
+## Exercise 3 — Summarize it in 30 seconds
+**⏱ 10 minutes · 4D: Description**
 
-Choose **one** path. The goal is not to complete every prompt; it is to practice the full cycle of requesting, reviewing, and improving one useful result.
+> **Story:** The elevator test. Your CFO steps in, hits the button for floor 12, and says "How's the business doing?" You have 30 seconds.
 
-## Path A — Create a concise management summary
-
-Choose this path when the immediate need is to communicate the main message.
-
-### Initial prompt
-
-```text
-Summarize this dataset for a finance leader in no more than five bullets.
-
-Include:
-- The most important verified result
-- The largest positive and negative movements
-- A notable trend, exception, or concentration
-- One data-quality or interpretation limitation
-- One recommended follow-up
-
-Use exact figures from the dataset. State the period and comparison basis. Do not speculate about causes that are not supported by the data.
+**Step 1 — The vague prompt (do this on purpose):**
+```
+Summarize this data.
 ```
 
-### Review the first draft
-
-Mark any sentence that:
-
-- Uses “significant,” “large,” or “material” without a number or threshold;
-- Describes a result without its comparison basis;
-- Presents an assumed cause as a fact;
-- Includes detail that does not change a decision;
-- Omits the period, unit, or relevant category;
-- Combines several messages in one bullet.
-
-### Improvement prompt
-
-```text
-Revise the summary for clarity and precision.
-
-Quantify vague statements, identify the comparison basis, remove repetition, and label unsupported explanations as questions for investigation. Put the most decision-relevant finding first. End with a specific next action and the evidence needed.
+**Step 2 — The 4-part prompt:**
+```
+Act as an FP&A analyst writing for the CFO. Summarize this business unit's
+performance for Aug 2026 year-to-date compared to Aug 2025 year-to-date.
+Cover revenue, EBITA, and net income. The numbers are in whole dollars.
+Write exactly 3 bullet points, under 60 words total, and end with one
+question the CFO should ask.
 ```
 
-### Success test
+**Step 3 — Change the audience.** Re-run Step 2, but swap "for the CFO" with *your* audience:
 
-A reader can understand the result, limitation, and next action in under one minute.
+| If you're in… | Try "writing for…" |
+|---|---|
+| Tax | "the Tax Director, focusing on taxes, FX, and non-operating items" |
+| Accounting | "the Controller, focusing on unusual accruals or reversals" |
+| AP/Treasury | "the Treasurer, focusing on cash, receivables, and deferred revenue" |
+| Payroll | "the Payroll Manager, focusing on headcount and bonus accruals" |
+| ERP Systems | "the ERP team lead, focusing on data quality and account mapping issues" |
+
+### 🤔 Discuss
+- Put the vague and the 4-part summaries side by side. Which would you actually send?
+- **Spot check:** Pick *one* number from the summary and find it in the sheet. Did it match? Was it in the right units?
+- Did your summary mention that net income went **up** while EBITA went **down**? If not, ask Copilot about it. How is that possible? (Look at rows 38–44.)
 
 ---
 
-## Path B — Analyze Actual versus Forecast
+## Exercise 4 — Variance analysis: Actuals vs. Forecast
+**⏱ 12 minutes · 4D: Discernment**
 
-Choose this path when the dataset contains comparable **Actual** and **Forecast** values.
+> **Story:** A forecast is a weather report. A variance analysis is asking "why did it rain when you said sunny?" The *number* is easy. The *why* is the job.
 
-### Initial prompt
-
-```text
-Analyze Actual versus Forecast using this dataset.
-
-For each relevant category, calculate:
-- Variance amount = Actual minus Forecast
-- Variance percentage = (Actual minus Forecast) divided by Forecast
-- Absolute variance amount for ranking
-
-Then:
-1. Rank the largest absolute variances
-2. Identify the three items that deserve investigation
-3. Label a variance as favorable or unfavorable only when the business meaning is clear
-4. Write a concise narrative that separates observed results from possible causes
-
-Show the formulas used. Flag zero, blank, or negative Forecast values that require special handling. Preserve the source signs.
+**4a. Year-over-year (true Actual vs. Actual)**
+```
+Create a variance table comparing Aug 2026 YTD Actual to Aug 2025 YTD Actual
+for these rows: Gross Revenue, Net Revenue, Cost of Sales, EBITABA, EBITA,
+Non-Operating Expenses Total, and Net Income. Show dollar variance, percent
+variance, and flag anything with more than a 5% change. Add a one-line
+explanation for each flagged item based on the detail rows.
 ```
 
-### Add a review threshold
+**4b. Actual run-rate vs. Forecast run-rate**
 
-Use an approved threshold supplied by the facilitator or organization. If none is available, practice the prompt structure without presenting the example as policy.
+> There's no month with both an Actual and a Forecast. So we compare the *average actual month* to the *average forecast month* — a common FP&A move.
 
-```text
-For this exercise, highlight an item when it exceeds either [dollar threshold] or [percentage threshold].
-
-Return a table containing category, Actual, Forecast, variance amount, variance percentage, threshold result, and a short review note. Recalculate percentages from the underlying values rather than adding percentage rows.
+```
+Compare the average monthly value of the Actual months (May–Aug 2026) to the
+average monthly value of the Forecast months (Sep–Dec 2026) for Net Revenue,
+Sales & Marketing, EBITA, and Net Income. Show the averages, the dollar
+difference, and the percent difference. Which line items is the forecast
+most optimistic or pessimistic about?
 ```
 
-### Improve the narrative
-
-```text
-Rewrite the top three variance explanations using this structure:
-
-[Category]: [amount and percentage] versus Forecast for [period].
-Observed result: [what the data confirms].
-Possible driver to investigate: [question or hypothesis, not a stated fact].
-Next step: [specific owner, evidence, or analysis needed].
-
-Do not use “timing,” “one-time,” “mix,” or “volume” unless the dataset or added context supports that explanation.
+**4c. Hunt for the outliers**
+```
+Look across the monthly columns (May 2026 – Jan 2027). Identify the three
+biggest one-month spikes or drops in any expense line, and suggest a
+plausible business reason for each. Label your reasons as hypotheses.
 ```
 
-### Important interpretation note
+### 🤔 Discuss
+- Copilot gave you *reasons*. Are those **facts** from the data or **guesses**? How can you tell?
+- Look at **Cloud COGS** and **Maintenance COGS** around Sep 2026. Did costs really change — or did they just move rows? Why does this matter for a variance explanation?
+- What would you need to *verify* before putting 4c in front of leadership?
 
-A positive variance is not automatically favorable. Higher revenue may be favorable and higher expense may be unfavorable, while balance-sheet, tax, treasury, payroll, and operational measures require additional business context.
+> **The aha:** Copilot is great at *finding* the variance and terrible at *knowing* the reason. It's never sat in your month-end close meeting. You have.
 
 ---
 
-## Path C — Explore a transparent baseline forecast
+## Exercise 5 — Chart it & forecast it
+**⏱ 8 minutes · 4D: Delegation + Discernment**
 
-Choose this path when the dataset contains several comparable historical periods.
+> **Story:** A table is a recipe. A chart is the photo of the finished dish. People decide whether to eat from the photo.
 
-### Assess suitability first
-
-```text
-Assess whether this dataset is suitable for a simple baseline forecast.
-
-Identify:
-- The available time range and number of periods
-- Missing or partial periods
-- Unusual values that could distort a forecast
-- Visible trend or seasonality
-- Changes in categories or business structure
-- Important factors not captured in the dataset
-
-Conclude whether a baseline forecast is reasonable, conditionally reasonable, or not supported. Explain why. Do not generate forecast values yet.
+**5a. Build a visual**
+```
+Create a line chart showing Net Revenue and EBITA by month from May 2026
+through Jan 2027. Make the Actual months visually distinct from the
+Forecast months, and add a clear title.
 ```
 
-### Compare simple methods
+> If Copilot can't create the chart directly, try: *"Tell me step by step how to build this chart in Excel."*
 
-```text
-Compare up to three transparent baseline forecasting methods that fit this dataset, such as:
-- Recent-period average
-- Growth-rate trend
-- Seasonal pattern
-
-For each method, explain the calculation, required history, strengths, weaknesses, and when it could mislead. Recommend one method, but do not produce forecast values until the assumptions are stated.
+**5b. Simple forecast**
+```
+Using the monthly Net Revenue values for May–Aug 2026 Actual and
+Sep 2026–Jan 2027 Forecast, project Net Revenue for Feb–Apr 2027 using a
+simple trend. Explain your method in one sentence and list the
+assumptions and limitations.
 ```
 
-### Create and challenge the baseline
-
-```text
-Using the selected method, produce a clearly labeled baseline forecast.
-
-Keep historical Actuals separate from forecast periods. Show the calculation, assumptions, and limitations. Then identify two business scenarios that could make the result higher or lower without inventing specific impacts.
-```
-
-### Success test
-
-A reviewer can understand and reproduce the method without relying on “the AI predicted it.”
+### 🤔 Discuss
+- Would you trust a forecast built on **9 data points**, where 5 are already forecasts? What's the risk of "forecasting a forecast"?
+- Compare Copilot's trend to the **FY 2027 Forecast** column (col X). Does it point in the same direction?
+- Which part of forecasting would you **delegate** to Copilot, and which part must stay with a human?
 
 ---
 
-## Presentation activity — Choose one visual and one supporting table
+## Exercise 6 — Pick your role track
+**⏱ 5 minutes · All 4Ds**
 
-After completing your selected analysis path, submit:
+Choose the track that matches your job. Run the prompt, then do the **Verify** step.
 
-```text
-Using the selected business question and analysis, recommend one visual and one supporting table.
+<details>
+<summary><b>🧾 Tax</b></summary>
 
-For the visual, specify:
-- Chart type
-- Category and value fields
-- Sort order
-- Recommended title
-- What the audience should notice first
-- One reason this chart could be misleading if used incorrectly
-
-For the table, specify:
-- Required columns
-- Column order
-- Number formats
-- Useful filter or conditional-formatting rule
-- Which rows should be traceable to source detail
-
-Keep the design professional and simple. Do not add measures that cannot be calculated from the available fields.
 ```
+Focus on the Taxes, Foreign Exchange Loss (Gain), Interest, and Other
+Non-Operating rows. Summarize the month-by-month pattern for May–Aug 2026,
+flag any month with an unusual amount, and list three questions I should
+ask the accounting team before quarter-end.
+```
+**Verify:** Taxes appear in only one month. Is that a payment, an accrual true-up, or a reclass? Copilot can't know — who would?
+</details>
 
-### Visual selection guide
+<details>
+<summary><b>📒 Accounting</b></summary>
 
-| If the audience needs to see… | Consider… | Avoid when… |
-| --- | --- | --- |
-| Performance over time | Line chart | Periods are missing or not comparable |
-| Actual versus Forecast by category | Clustered bar or column chart | There are too many categories to read |
-| Drivers from Forecast to Actual | Waterfall or bridge chart | The drivers do not reconcile to the total |
-| Contribution or concentration | Sorted bar chart | Categories overlap or do not form comparable groups |
-| Exceptions requiring action | Filtered table with conditional formatting | The goal is a high-level trend |
+```
+Review the Profit Sharing Bonus rows (rows 34 and 85). Identify any negative
+months or large swings, explain what an accrual reversal looks like in
+monthly data, and draft a short note I could attach to the close file.
+```
+**Verify:** There are *two* Profit Sharing Bonus rows. Compare their monthly values, then their YTD columns (U and T). Should they tie? What would you check?
+</details>
 
-## Beginner checkpoint
+<details>
+<summary><b>⚙️ ERP Systems</b></summary>
 
-Before moving on, you should have:
+```
+Using the Account and Ref Code columns, list every Ref Code that is used by
+more than one row, and any rows where all monthly values are zero. Explain
+what data-quality or mapping issues these might indicate in the source
+system.
+```
+**Verify:** Several rows share the code `EmpTot` or `OpExpBBD`. Is that a mapping error or a rollup design choice?
+</details>
 
-- [ ] One answer to the selected business question;
-- [ ] One supporting calculation or comparison;
-- [ ] One visual recommendation;
-- [ ] One supporting table recommendation;
-- [ ] One clearly stated limitation;
-- [ ] At least one source row, total, or formula you can independently check.
+<details>
+<summary><b>📈 FP&A</b></summary>
+
+```
+Sales & Marketing is forecast at roughly $225K in Oct 2026 versus about
+$100K–$130K in other months. Build a short variance explanation template
+I can send to the budget owner, including the questions I need answered.
+```
+**Verify:** Confirm the Oct figure yourself in row 24. Did Copilot invent a reason, or ask for one?
+</details>
+
+<details>
+<summary><b>🏦 AP / Treasury</b></summary>
+
+```
+Using the Balance Sheet Stats section for May–Aug 2026, summarize the trend
+in Cash, Gross A/R, the A/R aging buckets, and Deferred Revenue. Calculate
+the percent of Gross A/R that is over 90 days for each month and flag
+any concerns.
+```
+**Verify:** The "Average Days in A/R" row shows 2–4 days. Does that sound realistic for B2B receivables? What might be wrong with the formula?
+</details>
+
+<details>
+<summary><b>👥 Payroll</b></summary>
+
+```
+Using the HR Stats section, summarize headcount by department from May 2026
+through Jan 2027. Which departments grow or shrink in the forecast? Show it
+as a small table and add two bullets on what this could mean for payroll.
+```
+**Verify:** Headcount values have decimals (e.g., 114.99). Why? (Remember: this data was randomized.) Would Copilot catch that real headcount should be whole numbers or FTEs?
+</details>
 
 ---
 
-# Part 6 — Challenge, correct, and validate (45–54 minutes)
+## Debrief
+**⏱ 3 minutes · 4D: Diligence**
 
-## Activity 6A — Add role-specific context
+Ask the room — don't answer for them:
 
-Add the instruction that best matches your role:
+1. **Delegation:** What's one task from today you'd hand to Copilot *tomorrow*? What's one you never would?
+2. **Description:** What single word or phrase made your prompts noticeably better?
+3. **Discernment:** Where did Copilot sound confident and turn out wrong?
+4. **Diligence:** If you send a Copilot summary to your boss and a number is wrong, whose name is on it?
 
-| Role | Add this instruction |
-| --- | --- |
-| **Tax** | Group results by tax type or jurisdiction where available, and do not infer tax treatment from account labels alone. |
-| **Accounting** | Preserve account classifications and signs, and identify items that may require reconciliation or supporting detail. |
-| **ERP Systems** | Focus on data structure, field consistency, mapping issues, lineage, and whether the analysis can be repeated. |
-| **FP&A** | Prioritize material Actual-versus-Forecast drivers, trend implications, and whether assumptions or the forecast should be updated. |
-| **Accounts Payable** | Focus on vendors, spend categories, timing, exceptions, and possible duplicate or unusual payments. |
-| **Treasury** | Focus on cash timing, liquidity, concentration, and forecast accuracy without assuming all cash movements are operational. |
-| **Payroll** | Focus on headcount, rate, timing, bonus, benefit, tax, and department drivers while protecting employee-level confidentiality. |
-
-Also add at least one definition known to you:
-
-- Whether the period is complete;
-- Whether values are monthly, quarter-to-date, year-to-date, or cumulative;
-- Whether Forecast means approved plan, current outlook, or another comparison;
-- What “favorable” means for the selected measure;
-- Whether a category contains confidential information;
-- Whether totals include eliminations, allocations, or adjustments.
-
-## Activity 6B — Ask Copilot to challenge the work
-
-```text
-Act as a skeptical finance reviewer.
-
-Identify:
-1. Any conclusion not directly supported by the dataset or provided context
-2. Any calculation, sign, total, or denominator that needs to be checked
-3. Any favorable or unfavorable label that depends on business interpretation
-4. Any category definition, period, unit, or comparison basis that remains unclear
-5. Any confidential or employee-level detail that should be removed or aggregated
-6. Any important alternative interpretation
-7. Any evidence needed before someone acts on the result
-
-Do not defend the existing answer. Focus on what could be wrong, incomplete, overstated, or misleading.
-```
-
-## Activity 6C — Independently check one result
-
-Choose one important number and document the check:
-
-```text
-Result checked: ________________________________________________
-Source rows or values used: ____________________________________
-Formula or reconciliation: _____________________________________
-My independently calculated result: _____________________________
-Copilot result: ________________________________________________
-Difference, if any: _____________________________________________
-Action taken: __________________________________________________
-```
-
-## Activity 6D — Correct and document the result
-
-```text
-Revise the analysis using the review findings and the independently checked result.
-
-At the end, add a section titled “Validation and limitations” containing:
-- Calculations checked
-- Business definitions confirmed
-- Assumptions still open
-- Data-quality limitations
-- Confidentiality considerations
-- Recommended human review
-
-Do not state that the analysis is validated if any listed check was not performed.
-```
-
-## Human review checklist
-
-- [ ] The dataset, period, unit, and comparison basis are correctly identified.
-- [ ] One row's level of detail is understood or disclosed as uncertain.
-- [ ] All stated figures can be traced to the dataset.
-- [ ] At least one important figure was independently recalculated.
-- [ ] Formulas, signs, and denominators are correct.
-- [ ] Totals and percentages are calculated appropriately.
-- [ ] Zero, blank, and negative comparison values received appropriate treatment.
-- [ ] Favorable or unfavorable labels match the business meaning.
-- [ ] Observations are separated from hypotheses and recommendations.
-- [ ] Confidential details have been removed or appropriately aggregated.
-- [ ] The output states material limitations and open assumptions.
-- [ ] A qualified owner will review the analysis before use.
-
-## Expected output
-
-A corrected analysis that explicitly states what is confirmed, what remains uncertain, and what a human reviewer must do next.
+> **Closing line:** "Copilot is the fastest junior analyst you'll ever have. It never sleeps, never complains… and never sat in your close meeting. Keep your hand on the wheel."
 
 ---
 
-# Part 7 — Report out and capture a reusable prompt (54–60 minutes)
+## Take-home prompt card
 
-## Activity 7A — Prepare a 60-second report-out
+| Goal | Starter prompt |
+|---|---|
+| Understand a file | `Describe this sheet in plain English and flag anything unusual.` |
+| Make it readable | `Bold the total rows and highlight negatives in red.` |
+| Summarize | `Act as [role] writing for [audience]. Summarize [period] in 3 bullets under 60 words.` |
+| Variance | `Compare [period A] to [period B] for [rows]. Show $ and %, flag changes over 5%.` |
+| Explain | `Suggest possible reasons for [variance]. Label them as hypotheses.` |
+| Visualize | `Create a [chart type] of [rows] over [columns] with a clear title.` |
+| Forecast | `Project [metric] for [periods] using a simple trend. State assumptions and limits.` |
+| Check yourself | `What in your answer am I most likely to need to double-check?` |
 
-```text
-We used Copilot to [describe the business question].
-
-The most important verified finding was [result and comparison basis].
-
-We improved the reporting by [visual, table, summary, variance, or forecast improvement].
-
-Copilot initially [describe one weakness, unsupported assumption, or unclear answer].
-
-We corrected it by [adding context, using a follow-up prompt, checking a formula, or defining a business term].
-
-Before using the result, the next human review is [specific follow-up].
-```
-
-## Activity 7B — Pair discussion
-
-Discuss these questions with another participant:
-
-1. Did you use the same data to answer different business questions?
-2. Which prompt instruction produced the biggest improvement?
-3. What did Copilot misunderstand, assume, or leave ambiguous?
-4. Which independent check was most important?
-5. What part required finance expertise rather than AI assistance?
-
-## Activity 7C — Save your reusable prompt
-
-```text
-Goal: [Specific finance question]
-
-Context:
-- Audience: [Role or decision-maker]
-- Dataset grain: [What one row represents]
-- Period and comparison: [Period, Actual, Forecast, prior period, or other basis]
-- Business definitions: [Relevant classification, threshold, or meaning]
-- Known limitations: [Missing periods, incomplete definitions, or other constraints]
-
-Output:
-- [Requested table, visual, narrative, or calculation]
-- [Length, ranking, grouping, or formatting requirement]
-- [Decision or action the response should support]
-
-Guardrails:
-- Use exact figures and actual column names
-- Show formulas and comparison bases
-- Preserve source signs and classifications
-- Separate observations, assumptions, hypotheses, and recommendations
-- Flag missing, zero, negative, duplicate-looking, or unusual values
-- Do not invent business explanations
-- Protect confidential information
-- State validation steps, open questions, and limitations
-```
-
-## Example report-out
-
-> We used Copilot to compare Actual results with Forecast and identify the largest exceptions. The most important verified finding was concentrated in a small number of categories, so we replaced a dense report with a sorted comparison visual and an exception table. Copilot initially treated every positive variance as favorable, but we corrected the response by adding account context and explicitly defining favorable treatment. Before using the result, the process owner needs to confirm the operational drivers and supporting evidence.
+### Same prompts, other tools
+These prompts also work in **ChatGPT** and **Claude** (upload the workbook). The difference: Copilot in Excel can *change* your sheet in place; ChatGPT and Claude typically analyze the file and hand you back results or a new file. Same skills, different hands.
 
 ---
 
-# What good looks like
+## 🧑‍🏫 Facilitator answer key
 
-By the end of the lab, the work should:
+<details>
+<summary><b>Click to expand (instructors only)</b></summary>
 
-- Answer one clear business question for a named audience.
-- Identify the dataset, period, comparison basis, units, and level of detail.
-- Use a visual or table that matches the question.
-- Present the most decision-relevant information first.
-- Show or explain important calculations.
-- Make vague descriptions measurable.
-- Distinguish facts, assumptions, hypotheses, and recommendations.
-- Include a documented challenge-and-revision cycle.
-- Include at least one independently checked result.
-- State validation steps, open assumptions, and material limitations.
-- Protect confidential and employee-level information.
-- Be reviewable and reproducible by another finance professional.
+All figures computed from the workbook. "$" = whole dollars as stored in the cells.
 
-# Common beginner mistakes and recovery prompts
+### Exercise 1 — The planted traps
 
-| Beginner mistake | Why it matters | Recovery prompt |
-| --- | --- | --- |
-| Asking “What insights do you see?” | The goal and decision are undefined | “List the questions this dataset can answer, then help me select one for [audience].” |
-| Accepting a polished response without checking the grain | Totals or comparisons may be invalid | “Explain what one row represents and identify fields that appear to make it unique.” |
-| Treating all positive variances as favorable | Business meaning differs by measure | “Remove favorable labels unless the account or measure context supports them.” |
-| Asking for too many charts | The main message becomes unclear | “Recommend one visual that best answers the selected question and explain why.” |
-| Letting Copilot invent causes | A plausible explanation may not be supported | “Rewrite causes as questions or hypotheses and list the evidence needed.” |
-| Ignoring zero or negative denominators | Percentage variances may be meaningless | “Flag cases where percentage variance should not be calculated or needs special interpretation.” |
-| Starting over after a weak answer | The user loses useful context | “Critique the prior response against these requirements, then revise only the weak areas.” |
-| Sharing detailed sensitive data | Confidential information may be exposed | “Aggregate or remove employee-level and confidential fields before presenting the result.” |
+| Trap | What's going on | Why it matters |
+|---|---|---|
+| **Units** | Cells store whole dollars; number format `#,##0,` *displays* them in thousands. Row 2's note says "thousands." | Copilot may report May Gross Revenue as "$1,405" or "$1.4M" depending on what it reads. The correct value is ~$1.41M. |
+| **Column V ratios** | Column V applies ratio formulas to *variance dollars* (e.g., EBITA % shows 116.5%). | Ratio "variances" in col V are meaningless. Real EBITA margin: 22.2% (YTD 2025) → 21.0% (YTD 2026). |
+| **Sep labeling** | Sep 2026 monthly = Forecast; Q3 2026 = Actual. | Labels are inconsistent; ask which is current before reporting. |
+| **No overlapping A vs F** | No month has both an Actual and a Forecast. | True "Actual vs. Forecast" isn't possible from this file — hence the run-rate approach in Ex. 4b. |
+| **Days in A/R** | Shows 2–4 days for May–Aug 2026. | Likely a formula/annualization error. Gross A/R ≈ $0.7–1.2M vs. ~$1.3M monthly net revenue implies ~15–30 days. |
 
-# Optional stretch activities
+### Exercise 3 — Key YTD facts (Aug 2026 YTD vs. Aug 2025 YTD)
 
-Use these only if a participant finishes early. They are not required for the 60-minute core lab.
+| Line | 2025 YTD | 2026 YTD | $ Var | % Var |
+|---|---:|---:|---:|---:|
+| Gross Revenue | 11,489,590 | 11,249,203 | (240,387) | -2.1% |
+| Net Revenue | 10,649,334 | 10,359,395 | (289,939) | -2.7% |
+| Cost of Sales | 840,256 | 889,808 | 49,552 | +5.9% |
+| EBITABA | 3,775,831 | 3,521,699 | (254,131) | -6.7% |
+| EBITA | 2,359,248 | 2,171,947 | (187,302) | -7.9% |
+| Non-Op Expenses Total | 1,403,429 | 642,524 | (760,904) | -54.2% |
+| **Net Income** | **955,820** | **1,529,422** | **573,603** | **+60.0%** |
 
-## Stretch 1 — Compare two audiences
+**The "how is NI up while EBITA is down?" answer:** Non-operating expenses fell ~$761K, mostly from Amortization (−$355K) and Other Non-Operating (−$522K, a 2025 item that didn't recur). Operating performance actually *declined*. A summary that leads with "Net income up 60%!" is technically true and misleading — a great Discernment moment.
 
-Ask Copilot to rewrite the same verified result for:
+### Exercise 4 — Variance highlights
 
-- A finance leader who needs the decision and risk; and
-- An analyst who needs calculations, definitions, and source detail.
+**4b — Monthly averages, Actual (May–Aug) vs. Forecast (Sep–Dec 2026):**
 
-Compare what should change and what must remain consistent.
+| Line | Avg Actual | Avg Forecast | % Diff |
+|---|---:|---:|---:|
+| Net Revenue | 1,274,260 | 1,264,923 | -0.7% |
+| Sales & Marketing | 100,281 | 148,161 | +47.7% |
+| EBITA | 258,944 | 195,004 | -24.7% |
+| Net Income | 174,839 | 150,231 | -14.1% |
 
-## Stretch 2 — Build a prompt chain
+**Story:** Revenue forecast is flat; profit forecast drops ~25% because S&M spend ramps — driven largely by Oct 2026 (~$225K vs. ~$122K average in the other forecast months).
 
-Split one large request into four prompts:
+**4c — Outliers learners should find:**
+- **Cloud COGS → $0 from Sep 2026** while **Maintenance COGS (excl. Cloud) roughly doubles** (~$50K → ~$113K). Very likely a **reclassification**, not a real cost change.
+- **Oct 2026 S&M spike** (~$225K).
+- **Jun 2026 Profit Sharing Bonus is negative** (−$62K) followed by a big Jul (+$158K) — looks like an accrual reversal/true-up.
+- **Jun 2026 FX loss** (~$120K) then a **Jul FX gain** (~$69K).
+- **Jan 2027 Amortization jumps** to ~$137K (vs. ~$41K) → Jan 2027 **Net Income turns negative** (−$7.8K).
+- **Jul 2026 CapEx is negative** (−$112K) — likely a disposal, credit, or reclass.
 
-1. Understand the data;
-2. Perform the calculation;
-3. Draft the communication;
-4. Challenge and validate the result.
+### Exercise 5 — Forecast context
+- FY 2026 Outlook Net Revenue: $15.98M (−1.5% vs. FY 2025).
+- FY 2027 Forecast Net Revenue: $14.05M (**−12.1%**); FY 2027 Net Income: $132K (−95%), driven by Amortization of ~$1.69M.
+- A simple linear trend on the monthly Net Revenue points downward — directionally consistent with the FY 2027 forecast. Key teaching point: 5 of the 9 inputs are themselves forecasts.
 
-Discuss whether the staged approach makes errors easier to identify.
+### Exercise 6 — Track notes
+- **Tax:** Taxes appear only in Jun 2026 (~$66.5K).
+- **Accounting:** Rows 34 (P&L expense) and 85 (balance-sheet accrual) track closely month to month (small gaps come from the ±3% randomization), but their **YTD columns don't tie at all**: Aug 2026 YTD is $418,861 in row 34 vs. $42,265 in row 85 (and $649,869 vs. $77,239 for 2025 YTD). That's the real find — a YTD column built differently for a balance-sheet row. Great recon discussion.
+- **ERP:** `OpExpBBD` is shared by rows 21–26, `EmpTot` by rows 88–93, and `6230_10` by rows 34 and 85 — rollup design, but ambiguous for lookups. 13 rows are all zeros across the monthly columns.
+- **FP&A:** Oct 2026 S&M ≈ $225K.
+- **AP/Treasury:** A/R >90 days as % of Gross A/R: May ~12.2%, Jun ~5.9%, Jul ~11.4%, Aug ~16.2%. Rising aged A/R in Aug is a real flag.
+- **Payroll:** Decimal headcount is a side effect of the ±3% randomization. Total headcount ~113–120; S&M grows from 9 to ~12–13 in the forecast.
 
-## Stretch 3 — Create a repeatable review standard
-
-Ask Copilot to convert the human review checklist into a reusable review template for a recurring monthly process. Confirm that the template does not imply a check was completed when it was not.
+</details>
 
 ---
 
-
-
-> **The objective is not to ask AI for “insights.” The objective is to give it a clear business question, usable context, an explicit output, and review rules that make the result understandable, traceable, and testable.**
+*Data is anonymized and randomized for training purposes only. Copilot features vary by license, tenant settings, and release channel; if a prompt doesn't run as written, ask Copilot to explain the steps instead.*
