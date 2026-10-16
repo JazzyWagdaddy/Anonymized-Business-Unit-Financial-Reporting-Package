@@ -1,8 +1,7 @@
 # Lab: From Spreadsheet to Story with Microsoft Copilot
 ### A 60-minute hands-on lab for Finance teams (Tax · Accounting · ERP Systems · FP&A · AP/Treasury · Payroll)
 
-> **The hook (say this out loud):**
-> "Every month you build a report that's 95 rows tall and 24 columns wide… and your CFO reads three numbers. Today, Copilot is your new analyst — fast, eager, a little overconfident. Your job isn't to do the work. It's to *manage* the work."
+> Every month you build a report that's 95 rows tall and 24 columns wide… and your CFO reads three numbers. Today, Copilot is your new analyst — fast, eager, a little overconfident. Your job isn't to do the work. It's to *manage* the work.
 
 ---
 
