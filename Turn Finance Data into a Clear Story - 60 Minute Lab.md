@@ -73,7 +73,7 @@ That's **Description** — the second D. Vague in, vague out.
 ---
 
 ## Exercise 1 — Meet your data (and its traps)
-**⏱ 7 minutes · 4D: Discernment**
+**⏱ 7 minutes **
 
 > **Story:** You wouldn't let a new analyst present on day one without asking "what is this file, anyway?" Same with Copilot.
 
@@ -100,7 +100,7 @@ before I use this data in a report.
 ---
 
 ## Exercise 2 — Make it look nicer
-**⏱ 10 minutes · 4D: Description**
+**⏱ 10 minutes **
 
 > **Story:** Your report is a buffet with no labels. Everything's there, but nobody knows where the dessert is. Let's add signs.
 
@@ -141,7 +141,7 @@ Net Revenue and G&A Ratio) as percentages with one decimal place.
 ---
 
 ## Exercise 3 — Summarize it in 30 seconds
-**⏱ 10 minutes · 4D: Description**
+**⏱ 10 minutes **
 
 > **Story:** The elevator test. Your CFO steps in, hits the button for floor 12, and says "How's the business doing?" You have 30 seconds.
 
@@ -177,7 +177,7 @@ question the CFO should ask.
 ---
 
 ## Exercise 4 — Variance analysis: Actuals vs. Forecast
-**⏱ 12 minutes · 4D: Discernment**
+**⏱ 12 minutes **
 
 > **Story:** A forecast is a weather report. A variance analysis is asking "why did it rain when you said sunny?" The *number* is easy. The *why* is the job.
 
@@ -219,7 +219,7 @@ plausible business reason for each. Label your reasons as hypotheses.
 ---
 
 ## Exercise 5 — Chart it & forecast it
-**⏱ 8 minutes · 4D: Delegation + Discernment**
+**⏱ 8 minutes **
 
 > **Story:** A table is a recipe. A chart is the photo of the finished dish. People decide whether to eat from the photo.
 
@@ -248,7 +248,7 @@ assumptions and limitations.
 ---
 
 ## Exercise 6 — Pick your role track
-**⏱ 5 minutes · All 4Ds**
+**⏱ 5 minutes**
 
 Choose the track that matches your job. Run the prompt, then do the **Verify** step.
 
@@ -324,7 +324,7 @@ as a small table and add two bullets on what this could mean for payroll.
 ---
 
 ## Debrief
-**⏱ 3 minutes · 4D: Diligence**
+**⏱ 3 minutes **
 
 Ask the room — don't answer for them:
 
@@ -355,73 +355,3 @@ These prompts also work in **ChatGPT** and **Claude** (upload the workbook). The
 
 ---
 
-## 🧑‍🏫 Facilitator answer key
-
-<details>
-<summary><b>Click to expand (instructors only)</b></summary>
-
-All figures computed from the workbook. "$" = whole dollars as stored in the cells.
-
-### Exercise 1 — The planted traps
-
-| Trap | What's going on | Why it matters |
-|---|---|---|
-| **Units** | Cells store whole dollars; number format `#,##0,` *displays* them in thousands. Row 2's note says "thousands." | Copilot may report May Gross Revenue as "$1,405" or "$1.4M" depending on what it reads. The correct value is ~$1.41M. |
-| **Column V ratios** | Column V applies ratio formulas to *variance dollars* (e.g., EBITA % shows 116.5%). | Ratio "variances" in col V are meaningless. Real EBITA margin: 22.2% (YTD 2025) → 21.0% (YTD 2026). |
-| **Sep labeling** | Sep 2026 monthly = Forecast; Q3 2026 = Actual. | Labels are inconsistent; ask which is current before reporting. |
-| **No overlapping A vs F** | No month has both an Actual and a Forecast. | True "Actual vs. Forecast" isn't possible from this file — hence the run-rate approach in Ex. 4b. |
-| **Days in A/R** | Shows 2–4 days for May–Aug 2026. | Likely a formula/annualization error. Gross A/R ≈ $0.7–1.2M vs. ~$1.3M monthly net revenue implies ~15–30 days. |
-
-### Exercise 3 — Key YTD facts (Aug 2026 YTD vs. Aug 2025 YTD)
-
-| Line | 2025 YTD | 2026 YTD | $ Var | % Var |
-|---|---:|---:|---:|---:|
-| Gross Revenue | 11,489,590 | 11,249,203 | (240,387) | -2.1% |
-| Net Revenue | 10,649,334 | 10,359,395 | (289,939) | -2.7% |
-| Cost of Sales | 840,256 | 889,808 | 49,552 | +5.9% |
-| EBITABA | 3,775,831 | 3,521,699 | (254,131) | -6.7% |
-| EBITA | 2,359,248 | 2,171,947 | (187,302) | -7.9% |
-| Non-Op Expenses Total | 1,403,429 | 642,524 | (760,904) | -54.2% |
-| **Net Income** | **955,820** | **1,529,422** | **573,603** | **+60.0%** |
-
-**The "how is NI up while EBITA is down?" answer:** Non-operating expenses fell ~$761K, mostly from Amortization (−$355K) and Other Non-Operating (−$522K, a 2025 item that didn't recur). Operating performance actually *declined*. A summary that leads with "Net income up 60%!" is technically true and misleading — a great Discernment moment.
-
-### Exercise 4 — Variance highlights
-
-**4b — Monthly averages, Actual (May–Aug) vs. Forecast (Sep–Dec 2026):**
-
-| Line | Avg Actual | Avg Forecast | % Diff |
-|---|---:|---:|---:|
-| Net Revenue | 1,274,260 | 1,264,923 | -0.7% |
-| Sales & Marketing | 100,281 | 148,161 | +47.7% |
-| EBITA | 258,944 | 195,004 | -24.7% |
-| Net Income | 174,839 | 150,231 | -14.1% |
-
-**Story:** Revenue forecast is flat; profit forecast drops ~25% because S&M spend ramps — driven largely by Oct 2026 (~$225K vs. ~$122K average in the other forecast months).
-
-**4c — Outliers learners should find:**
-- **Cloud COGS → $0 from Sep 2026** while **Maintenance COGS (excl. Cloud) roughly doubles** (~$50K → ~$113K). Very likely a **reclassification**, not a real cost change.
-- **Oct 2026 S&M spike** (~$225K).
-- **Jun 2026 Profit Sharing Bonus is negative** (−$62K) followed by a big Jul (+$158K) — looks like an accrual reversal/true-up.
-- **Jun 2026 FX loss** (~$120K) then a **Jul FX gain** (~$69K).
-- **Jan 2027 Amortization jumps** to ~$137K (vs. ~$41K) → Jan 2027 **Net Income turns negative** (−$7.8K).
-- **Jul 2026 CapEx is negative** (−$112K) — likely a disposal, credit, or reclass.
-
-### Exercise 5 — Forecast context
-- FY 2026 Outlook Net Revenue: $15.98M (−1.5% vs. FY 2025).
-- FY 2027 Forecast Net Revenue: $14.05M (**−12.1%**); FY 2027 Net Income: $132K (−95%), driven by Amortization of ~$1.69M.
-- A simple linear trend on the monthly Net Revenue points downward — directionally consistent with the FY 2027 forecast. Key teaching point: 5 of the 9 inputs are themselves forecasts.
-
-### Exercise 6 — Track notes
-- **Tax:** Taxes appear only in Jun 2026 (~$66.5K).
-- **Accounting:** Rows 34 (P&L expense) and 85 (balance-sheet accrual) track closely month to month (small gaps come from the ±3% randomization), but their **YTD columns don't tie at all**: Aug 2026 YTD is $418,861 in row 34 vs. $42,265 in row 85 (and $649,869 vs. $77,239 for 2025 YTD). That's the real find — a YTD column built differently for a balance-sheet row. Great recon discussion.
-- **ERP:** `OpExpBBD` is shared by rows 21–26, `EmpTot` by rows 88–93, and `6230_10` by rows 34 and 85 — rollup design, but ambiguous for lookups. 13 rows are all zeros across the monthly columns.
-- **FP&A:** Oct 2026 S&M ≈ $225K.
-- **AP/Treasury:** A/R >90 days as % of Gross A/R: May ~12.2%, Jun ~5.9%, Jul ~11.4%, Aug ~16.2%. Rising aged A/R in Aug is a real flag.
-- **Payroll:** Decimal headcount is a side effect of the ±3% randomization. Total headcount ~113–120; S&M grows from 9 to ~12–13 in the forecast.
-
-</details>
-
----
-
-*Data is anonymized and randomized for training purposes only. Copilot features vary by license, tenant settings, and release channel; if a prompt doesn't run as written, ask Copilot to explain the steps instead.*
