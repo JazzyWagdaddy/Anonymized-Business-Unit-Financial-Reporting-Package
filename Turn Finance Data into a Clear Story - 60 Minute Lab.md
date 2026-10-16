@@ -12,7 +12,7 @@
 | **Duration** | 60 minutes |
 | **Level** | New to Copilot. Comfortable in Excel. |
 | **Tools** | Microsoft 365 Copilot in Excel (primary) · Microsoft 365 Copilot Chat (backup) |
-| **Data** | [`data/Anonymized BU Sample Data - Original.xlsx`](data/) — one business unit's monthly reporting package |
+| **Data** | [`Anonymized BU Sample Data - Original.xlsx`](data/) — one business unit's monthly reporting package |
 | **Framework** | AI Fluency 4Ds: **Delegation · Description · Discernment · Diligence** |
 
 ### What you'll walk away able to do
